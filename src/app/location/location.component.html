@@ -1,0 +1,45 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Locations</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Listado de locations</h5>
+
+        <div class="my-2 text-left">
+            <button class="btn btn-rounded btn-primary" type="submit" [routerLink]="['/locations/form']">
+        Crear Location
+      </button>
+        </div>
+
+        <div class="alert alert-info" *ngIf="locations?.length == 0">
+            No hay registros en la base de datos
+        </div>
+
+        <table class="table table-bordered table-striped" *ngIf="locations?.length > 0">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Area M2</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let location of locations">
+                    <td>{{ location.id }}</td>
+                    <td>{{ location.name }}</td>
+                    <td>{{ location.area_m2 }}</td>
+                    <td>
+                        <button type="button" name="editar" [routerLink]="['/locations/form', location.id]" class="btn btn-primary btn-sm">
+              Editar
+            </button>
+                    </td>
+                    <td>
+                        <button type="button" name="eliminar" (click)="delete(location)" class="btn btn-danger btn-sm">
+              Eliminar
+            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
